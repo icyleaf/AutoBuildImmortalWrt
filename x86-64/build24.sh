@@ -45,16 +45,20 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') - 开始构建固件..."
 # ============= imm仓库内的插件==============
 # 定义所需安装的包列表 下列插件你都可以自行删减
 PACKAGES=""
-PACKAGES="$PACKAGES curl"
+PACKAGES="$PACKAGES curl zsh btop"
+PACKAGES="$PACKAGES luci-mod-rpc"
 PACKAGES="$PACKAGES luci-i18n-diskman-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-firewall-zh-cn"
-PACKAGES="$PACKAGES luci-theme-argon"
-PACKAGES="$PACKAGES luci-app-argon-config"
-PACKAGES="$PACKAGES luci-i18n-argon-config-zh-cn"
+# PACKAGES="$PACKAGES luci-theme-argon"
+# PACKAGES="$PACKAGES luci-app-argon-config"
+# PACKAGES="$PACKAGES luci-i18n-argon-config-zh-cn"
+PACKAGES="$PACKAGES luci-app-vlmcsd"
+PACKAGES="$PACKAGES luci-app-netdata"
+PACKAGES="$PACKAGES luci-app-ddns ddns-scripts-cloudflare"
 #24.10
 PACKAGES="$PACKAGES luci-i18n-package-manager-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-ttyd-zh-cn"
-PACKAGES="$PACKAGES luci-i18n-passwall-zh-cn"
+# PACKAGES="$PACKAGES luci-i18n-passwall-zh-cn"
 PACKAGES="$PACKAGES luci-app-openclash"
 PACKAGES="$PACKAGES luci-i18n-homeproxy-zh-cn"
 PACKAGES="$PACKAGES openssh-sftp-server"
@@ -79,7 +83,7 @@ if echo "$PACKAGES" | grep -q "luci-app-openclash"; then
     echo "✅ 已选择 luci-app-openclash，添加 openclash core"
     mkdir -p files/etc/openclash/core
     # Download clash_meta
-    META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-amd64.tar.gz"
+    META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-amd64-v2.tar.gz"
     wget -qO- $META_URL | tar xOvz > files/etc/openclash/core/clash_meta
     chmod +x files/etc/openclash/core/clash_meta
     # Download GeoIP and GeoSite
